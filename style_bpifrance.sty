@@ -1,0 +1,189 @@
+\usepackage{titlesec} 
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+\usepackage{xcolor}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+\usepackage[lastpage,user]{zref}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[font={color=Orange}]{caption}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
+% \addto\captionsfrench{% Replace "english" with the language you use
+%   \renewcommand{\contentsname}%
+%     {Sommaire}%
+% }
+
+%------------------Main Font-------------------------
+\setmainfont{Liberation Sans Narrow}
+
+% \newfontfamily\subsectionfont[Color=LightBlue]{TeX Gyre Termes}
+% \setmainfont{Anton}
+%Make sure you have the compiler "XeLaTeX" activated on your settings for your LaTeX document in order to see the font 
+
+%------------------Color Set--------------------------
+\definecolor{YellowBpifrance}{RGB}{255, 205, 0}
+\definecolor{DarkBlue}{RGB}{36, 100, 176}
+\definecolor{LightGray}{RGB}{120, 110, 100}
+\definecolor{DarkGray}{RGB}{94, 81, 77} % 5E514D %
+\definecolor{Orange}{RGB}{220, 70, 0}
+\definecolor{Black}{RGB}{44, 42, 41}
+\definecolor{LightPink}{RGB}{222, 135, 161}
+\definecolor{PaleWhite}{RGB}{243, 243, 243}
+
+\newcommand{\globalcolor}[1]{%
+  \color{#1}\global\let\default@color\current@color
+}
+\AtBeginDocument{\globalcolor{DarkGray}}
+%------------------Section Default Setting-------------
+
+% \titleformat{\chapter}[block]{\titlelabel{\thetitle.\quad}\color{DarkGray}\normalfont\bfseries\Huge}
+
+\titleformat*{\section}{\titlelabel{\thetitle.\quad}\color{DarkGray}\normalfont\bfseries\Huge}
+    
+\titleformat*{\subsection}
+    {\titlelabel{\thetitle.\quad}\color{YellowBpifrance}\normalfont\bfseries\LARGE}
+    
+\titleformat*{\subsubsection}{\titlelabel{\thetitle.\quad}\color{LightGray}\normalfont\bfseries\LARGE}
+\titleformat*{\paragraph}{\color{Orange}\normalfont\bfseries}
+
+%-------------------Section Numbers Removal------------
+% \setcounter{secnumdepth}{1}
+
+%-------------------Others-------------------
+
+\renewcommand{\FrenchLabelItem}{\color{Orange}\leafleft}
+\renewcommand{\Frlabelitemii}{\color{Orange} $\bullet$}
+\renewcommand{\Frlabelitemiii}{\color{Orange} $\circ$}
+% \renewcommand{\title}[1]{\title{\color{YellowBpifrance}\normalfont\bfseries\LARGE #1}}
+% \renewcommand{\maketitle}{{\LARGE{\bf \@title}}}
+
+\newcommand{\boxedb}[1]{\setlength{\fboxrule}{0pt}\fcolorbox{Black}{PaleWhite}{\parbox{0.98\textwidth}{\centering\color{LightPink}\ensuremath{\displaystyle#1}}}}
+
+
+% \def \f {1.0}
+% \renewcommand\maketitle{\begin{titlepage}%
+%     \let\footnotesize\small
+%     \let\footnoterule\relax
+%     \let \footnote \thanks
+%     \null\vfil
+%     %  \vskip 60\p@
+%     \begin{center}%
+%      {\LARGE \@title \par}%
+%      \vskip 3em%
+%      {\large
+%       \lineskip .75em%
+%       \begin{tabular}[t]{c}%
+%          \@author
+%       \end{tabular}\par}%
+%       \vskip 1.5em%
+%      {\large \@date \par}%       % Set date in \large size.
+%     \vskip 1.5em
+%     \begin{tikzpicture}
+%         \draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.08);
+%         \draw[LightGray, fill=LightGray] (0.25,0) circle (0.08);
+%         \draw[YellowBpifrance, fill=YellowBpifrance] (0.5,0) circle (0.08);
+%         \draw[LightGray, fill=LightGray] (0.75,0) circle (0.08);
+%     \end{tikzpicture}
+%     \end{center}\par
+%     \@thanks
+%     \vfil\null
+    
+%     \end{titlepage}%
+%     \setcounter{footnote}{0}%
+%     \global\let\thanks\relax
+%     \global\let\maketitle\relax
+%     \global\let\@thanks\@empty
+%     \global\let\@author\@empty
+%     \global\let\@date\@empty
+%     \global\let\@title\@empty
+%     \global\let\title\relax
+%     \global\let\author\relax
+%     \global\let\date\relax
+%     \global\let\and\relax
+% }
+
+%-------------------------Header & Footer------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{
+\begin{tikzpicture}
+\draw[DarkGray, fill = DarkGray ] (0,0) circle (0.2);
+\end{tikzpicture}
+\hspace{0.5mm}%
+\begin{tikzpicture}
+\draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.2);
+\end{tikzpicture}
+}
+\setlength{\headheight}{16pt}
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+\fancyfoot[R]{\textcolor{LightGray}{Page \thepage /\zpageref{LastPage}}
+}
+\fancyfoot[L]{\textcolor{LightGray}{\today~-~Bpifrance/FIN/AEQ/INQ}
+}
+% \fancyhead[L]{\includegraphics[width = 20mm]{figures/bpifrance_logo.pdf}}}
+
+% \setlength{\textheight}{22cm}% ...at least 51.60004pt
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{30}{30}}
+\makeatother 
+
+
+
+%-------------------------Title Page------------------------
+% Defines a \titre command which takes the title as an argument
+
+\newcommand{\titre}[1]{%
+	\begin{titlepage}
+		
+%-------Logo
+		\begin{figure}
+			\leftskip-1cm
+			\vskip-2cm
+			\includegraphics[width = 50mm]{figures/logo.pdf}
+			\vskip-0.65cm
+		\end{figure}
+		
+%-------Direction 
+		\begin{flushleft}
+			\leftskip-1cm
+			\textcolor{LightGray}{
+				Direction Financière\\
+				Direction Actuariat et Evaluation Quantitative\\
+			    Domaine Ingénierie Quantitative}
+		\end{flushleft}
+
+%-------Titre
+		\vspace{0pt}
+		\hspace{0pt}
+		\vfill
+%------------Text
+		\begin{flushleft}
+			\normalfont\bfseries\HUGE\color{YellowBpifrance}{#1}
+		\end{flushleft}
+%------------Cercles
+		\begin{figure}[!h]
+			\centering
+			\begin{tikzpicture}
+				\draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.075);
+			\end{tikzpicture}
+			\begin{tikzpicture}
+				\draw[DarkGray, fill = DarkGray ] (0,0) circle (0.075);
+			\end{tikzpicture}
+			\begin{tikzpicture}
+				\draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.075);
+			\end{tikzpicture}
+			\begin{tikzpicture}
+				\draw[DarkGray, fill = DarkGray ] (0,0) circle (0.075);
+			\end{tikzpicture}
+		\end{figure}
+		
+		\vfill
+		\hspace{0pt}
+		
+	\end{titlepage}
+}
