@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 \usepackage{lipsum}
 \usepackage{style_bpifrance}
 %------------------Document----------------------------
@@ -47,6 +47,41 @@ S_{i,j,t} = H^{-1}_{\mu,\sigma}(\Phi(Z_{i,j,t}))
 \subsection{Subsection}
 
 In pretium enim dui, quis ornare odio varius et. Nulla facilisi. Nunc tristique tortor at urna vehicula, elementum bibendum tortor hendrerit. Ut eu risus nisi. Vestibulum nunc lorem, tristique sed ultrices nec, porta et ligula. Nam facilisis felis a congue auctor. Fusce id odio in libero blandit cursus nec nec arcu. Nulla eu ultricies massa, id dapibus nisi. Donec tellus urna, maximus nec semper id, consectetur eu mi. Vestibulum elit eros, porta ac eros a, mattis pulvinar magna. Nulla pellentesque dapibus leo molestie varius. Duis ut rutrum urna, at condimentum dui. Sed orci magna, faucibus nec quam et, malesuada ultrices velit. Nam a lorem a massa facilisis rutrum eget id nunc. Morbi aliquet felis et tincidunt scelerisque. 
+
+\begin{enumerate}
+    \item Modélisation de la mise en jeu de la garantie
+    \item Modélisation du taux de récupération
+\end{enumerate}
+
+\paragraph{Etape 1 : simulation de l'exposition globale probable}
+A la date de simulation, l’exposition globale n’est pas connue, car certaines autorisations de garantie :
+
+\begin{itemize}
+    \item de la base de simulation ne sont pas encore utilisées, et pourraient l’être dans le futur
+    \item 	ne sont pas encore injectées dans le système informatique. Elles sont donc absentes de la base de simulation. Le risque autorisé injecté avec retard est donc à estimer.
+\end{itemize}
+
+
+La simulation des utilisations futures de garanties non encore utilisées est la première étape de la simulation du passif d’un fonds de garantie. Cette simulation est faite en utilisant des taux et profil d’utilisation calibrés sur les données historiques par fonds de garantie.  Cette simulation des utilisations permet d’avoir l’exposition globale saine du fonds de garantie.
+
+\paragraph{Etape 2 : simulation des remboursements anticipé et de la mise en jeu}
+
+La deuxième étape est la simulation des sinistres ou des mises en jeu probables sur les expositions saines. La simulation des contentieux est la partie la plus importante dans l’estimation du passif d’un fonds de garantie. 
+En général la mise en jeu de la garantie  a lieu :
+\begin{itemize}
+	\item si l’entreprise bénéficiaire du crédit garanti fait l’objet d’une procédure collective, dès le prononcé du jugement de redressement ou de liquidation judiciaire
+ 	\item dans le cas contraire, dès la notification de la résiliation du crédit, décidée d’un commun accord entre la banque et Bpifrance Financement.
+\end{itemize}
+ 
+Le montant total de mise en jeu (ou montant du sinistre) pour une maturité résiduelle maximale T des crédits et pour N entreprises bénéficiaires de crédits garantis, est donné comme suit:
+
+\[
+\boxedb{
+Mt\_MeJ\_Ultime(N,T) = \sum_{t=1}^T\sum_{i=1}^N E_{t-1,i}\times\delta_{t,i}\times\indic{t\leq \tau_{RA}}
+}
+\]
+
+
 
 \subsubsection{Subsubsection}
 \lipsum

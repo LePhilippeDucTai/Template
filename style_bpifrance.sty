@@ -11,7 +11,8 @@
 \usepackage{enumitem}
 \usepackage[font={color=Orange}]{caption}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
-
+\usepackage{amsfonts}
+\usepackage{bbm}
 %------------------Main Font-------------------------
 \setmainfont{Liberation Sans Narrow}
 
@@ -62,7 +63,8 @@
 
 
 \titleformat{\paragraph}[runin]{\color{Orange}\normalfont\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+
+\titlespacing*{\paragraph}{20pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 % \titlespacing{\paragraph}{1cm}{0cm}{10pt}
 
@@ -76,6 +78,18 @@
 \renewcommand{\Frlabelitemiii}{\color{Orange} $\circ$}
 
 \newcommand{\boxedb}[1]{\setlength{\fboxrule}{0pt}\fcolorbox{Black}{PaleWhite}{\parbox{0.98\textwidth}{\centering\color{LightPink}\ensuremath{\displaystyle#1}}}}
+
+
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{0mm}%
+       {-\baselineskip}%
+       {.5\baselineskip}%
+       {\color{Orange}\normalfont\bfseries}}
+\makeatother
+
+\newcommand{\indic}[1]{%
+\ensuremath{\mathbbm{1}_{\{#1\}}}
+}
 
 %-------------------------Header & Footer------------------------
 
@@ -92,7 +106,7 @@
             \draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.2);
         \end{tikzpicture}
     }
-    \setlength{\headheight}{16pt}
+    \setlength{\headheight}{20pt}
     \renewcommand{\footrulewidth}{0.4pt}% default is 0pt
     \fancyfoot[R]{
         \textcolor{LightGray}{Page \thepage /\zpageref{LastPage}}
