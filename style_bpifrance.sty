@@ -19,8 +19,10 @@
 
 %------------------Color Set--------------------------
 \definecolor{YellowBpifrance}{RGB}{255, 205, 0}
+\definecolor{DarkYellow}{RGB}{191, 153, 0}
 \definecolor{DarkBlue}{RGB}{36, 100, 176}
 \definecolor{LightGray}{RGB}{120, 110, 100}
+\definecolor{Gray}{RGB}{145, 149, 151}
 \definecolor{DarkGray}{RGB}{94, 81, 77} % 5E514D %
 \definecolor{Orange}{RGB}{220, 70, 0}
 \definecolor{Black}{RGB}{44, 42, 41}
@@ -31,14 +33,23 @@
   \color{#1}\global\let\default@color\current@color
 }
 \AtBeginDocument{\globalcolor{DarkGray}}
+
+%-------------------------TOC format-------------------------
+\let\toc\tableofcontents
+\renewcommand\tableofcontents{\newpage\hypersetup{linkcolor=LightGray}\toc}
+
 %------------------Section Default Setting-------------
 
 % \titleformat{\chapter}[block]{\titlelabel{\thetitle.\quad}\color{DarkGray}\normalfont\bfseries\Huge}
 
-\titleformat*{\section}{\titlelabel{\thetitle.\quad}\color{DarkGray}\normalfont\bfseries\Huge}
+% Chapter title format
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{Gray}}{}{-2cm}{}
+% Chapter title top margin
+\titlespacing{\chapter}{0pt}{0cm}{1cm}
+
+\titleformat*{\section}{\titlelabel{\thetitle.\quad}\color{DarkYellow}\normalfont\bfseries\huge}
     
-\titleformat*{\subsection}
-    {\titlelabel{\thetitle.\quad}\color{YellowBpifrance}\normalfont\bfseries\LARGE}
+\titleformat*{\subsection}{\titlelabel{\thetitle.\quad}\color{YellowBpifrance}\normalfont\bfseries\LARGE}
     
 \titleformat*{\subsubsection}{\titlelabel{\thetitle.\quad}\color{LightGray}\normalfont\bfseries\LARGE}
 \titleformat*{\paragraph}{\color{Orange}\normalfont\bfseries}
@@ -56,23 +67,29 @@
 
 %-------------------------Header & Footer------------------------
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{
-\begin{tikzpicture}
-\draw[DarkGray, fill = DarkGray ] (0,0) circle (0.2);
-\end{tikzpicture}
-\hspace{0.5mm}%
-\begin{tikzpicture}
-\draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.2);
-\end{tikzpicture}
+
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[L]{
+        \begin{tikzpicture}
+            \draw[DarkGray, fill = DarkGray ] (0,0) circle (0.2);
+        \end{tikzpicture}
+        \hspace{0.5mm}%
+        \begin{tikzpicture}
+            \draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.2);
+        \end{tikzpicture}
+    }
+    \setlength{\headheight}{16pt}
+    \renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+    \fancyfoot[R]{
+        \textcolor{LightGray}{Page \thepage /\zpageref{LastPage}}
+    }
+    \fancyfoot[L]{
+        \textcolor{LightGray}{\today~-~Bpifrance/FIN/AEQ/INQ}
+    }
 }
-\setlength{\headheight}{16pt}
-\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
-\fancyfoot[R]{\textcolor{LightGray}{Page \thepage /\zpageref{LastPage}}
-}
-\fancyfoot[L]{\textcolor{LightGray}{\today~-~Bpifrance/FIN/AEQ/INQ}
-}
+\pagestyle{plain}
 % \fancyhead[L]{\includegraphics[width = 20mm]{figures/bpifrance_logo.pdf}}}
 
 % \setlength{\textheight}{22cm}% ...at least 51.60004pt
