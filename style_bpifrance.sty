@@ -3,7 +3,7 @@
 \usepackage{fontspec}
 \usepackage{fourier-orns}
 \usepackage{xcolor}
-\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3.5cm]{geometry}
+\usepackage[left=2.5cm,right=1.75cm,top=3cm,bottom=3.5cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage[french]{babel}
 \usepackage[lastpage,user]{zref}
@@ -19,6 +19,7 @@
 
 %------------------Color Set--------------------------
 \definecolor{YellowBpifrance}{RGB}{255, 205, 0}
+\definecolor{LightOrange}{RGB}{255, 160, 0}
 \definecolor{DarkYellow}{RGB}{191, 153, 0}
 \definecolor{DarkBlue}{RGB}{36, 100, 176}
 \definecolor{LightGray}{RGB}{120, 110, 100}
@@ -43,19 +44,30 @@
 % \titleformat{\chapter}[block]{\titlelabel{\thetitle.\quad}\color{DarkGray}\normalfont\bfseries\Huge}
 
 % Chapter title format
-\titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{Gray}}{}{-2cm}{}
+\titleclass{\part}{top}
+\titleformat{\part}[display]{\normalfont\huge\bfseries\color{Gray}}{}{-2cm}{}
 % Chapter title top margin
-\titlespacing{\chapter}{0pt}{0cm}{1cm}
+\titlespacing{\part}{0pt}{0cm}{0.5cm}
 
-\titleformat*{\section}{\titlelabel{\thetitle.\quad}\color{DarkYellow}\normalfont\bfseries\huge}
+\titleclass{\chapter}{straight}
+\titleformat{\chapter}{\titlelabel{\thetitle.\quad}\color{DarkYellow}\normalfont\bfseries\huge}{\thechapter.}{.3em}{}
+\titlespacing{\chapter}{0pt}{0cm}{0.5cm}
+
+
+\titleformat{\section}{\titlelabel{\thetitle.\quad}\color{YellowBpifrance}\normalfont\bfseries\LARGE}{\thesection}{.5em}{}
     
-\titleformat*{\subsection}{\titlelabel{\thetitle.\quad}\color{YellowBpifrance}\normalfont\bfseries\LARGE}
-    
-\titleformat*{\subsubsection}{\titlelabel{\thetitle.\quad}\color{LightGray}\normalfont\bfseries\LARGE}
-\titleformat*{\paragraph}{\color{Orange}\normalfont\bfseries}
+% \renewcommand{\thesubsubsection}{\thesection.\thesubsection.{subsubsection}}
+\titleformat{\subsection}{\titlelabel{\thetitle.\quad}\color{LightOrange}\normalfont\bfseries\Large}{\thesubsection}{.5em}{}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+\titleformat{\paragraph}[runin]{\color{Orange}\normalfont\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+
+% \titlespacing{\paragraph}{1cm}{0cm}{10pt}
 
 %-------------------Section Numbers Removal------------
-% \setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{3}
 
 %-------------------Others-------------------
 
