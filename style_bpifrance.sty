@@ -12,16 +12,9 @@
 \usepackage[font={color=Orange}]{caption}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 
-% \addto\captionsfrench{% Replace "english" with the language you use
-%   \renewcommand{\contentsname}%
-%     {Sommaire}%
-% }
-
 %------------------Main Font-------------------------
 \setmainfont{Liberation Sans Narrow}
 
-% \newfontfamily\subsectionfont[Color=LightBlue]{TeX Gyre Termes}
-% \setmainfont{Anton}
 %Make sure you have the compiler "XeLaTeX" activated on your settings for your LaTeX document in order to see the font 
 
 %------------------Color Set--------------------------
@@ -58,53 +51,8 @@
 \renewcommand{\FrenchLabelItem}{\color{Orange}\leafleft}
 \renewcommand{\Frlabelitemii}{\color{Orange} $\bullet$}
 \renewcommand{\Frlabelitemiii}{\color{Orange} $\circ$}
-% \renewcommand{\title}[1]{\title{\color{YellowBpifrance}\normalfont\bfseries\LARGE #1}}
-% \renewcommand{\maketitle}{{\LARGE{\bf \@title}}}
 
 \newcommand{\boxedb}[1]{\setlength{\fboxrule}{0pt}\fcolorbox{Black}{PaleWhite}{\parbox{0.98\textwidth}{\centering\color{LightPink}\ensuremath{\displaystyle#1}}}}
-
-
-% \def \f {1.0}
-% \renewcommand\maketitle{\begin{titlepage}%
-%     \let\footnotesize\small
-%     \let\footnoterule\relax
-%     \let \footnote \thanks
-%     \null\vfil
-%     %  \vskip 60\p@
-%     \begin{center}%
-%      {\LARGE \@title \par}%
-%      \vskip 3em%
-%      {\large
-%       \lineskip .75em%
-%       \begin{tabular}[t]{c}%
-%          \@author
-%       \end{tabular}\par}%
-%       \vskip 1.5em%
-%      {\large \@date \par}%       % Set date in \large size.
-%     \vskip 1.5em
-%     \begin{tikzpicture}
-%         \draw[YellowBpifrance, fill=YellowBpifrance] (0,0) circle (0.08);
-%         \draw[LightGray, fill=LightGray] (0.25,0) circle (0.08);
-%         \draw[YellowBpifrance, fill=YellowBpifrance] (0.5,0) circle (0.08);
-%         \draw[LightGray, fill=LightGray] (0.75,0) circle (0.08);
-%     \end{tikzpicture}
-%     \end{center}\par
-%     \@thanks
-%     \vfil\null
-    
-%     \end{titlepage}%
-%     \setcounter{footnote}{0}%
-%     \global\let\thanks\relax
-%     \global\let\maketitle\relax
-%     \global\let\@thanks\@empty
-%     \global\let\@author\@empty
-%     \global\let\@date\@empty
-%     \global\let\@title\@empty
-%     \global\let\title\relax
-%     \global\let\author\relax
-%     \global\let\date\relax
-%     \global\let\and\relax
-% }
 
 %-------------------------Header & Footer------------------------
 
