@@ -133,51 +133,43 @@ In pretium enim dui, quis ornare odio varius et. Nulla facilisi. Nunc tristique 
 
 \newpage
 
-\chapter{Formalisation}
-Exprimons le problème qui nous intéresse sous le format d'un problème d'optimisation de programmation linéaire.
-
-\section{Variables}
-
-\begin{itemize}\itemsep2pt
-    \item $z$ : année observée
-    \item $( i , j )$ : années de (début,fin) d'un swap forward
-    \item $N_0$ : Nominal constant (celui du swap à répliquer)
-    \item $s_{i,j}$ : taux du swap forward débutant dans i années et finissant dans j (à partir d'aujourd'hui)
-    \item $N_{i,j}$ : Nominal du swap forward débutant dans i années et finissant dans j (à partir d'aujourd'hui)
-    \item $D_{i,j}$ : Duration du swap forward débutant dans i années et finissant dans j (à partir d'aujourd'hui)
-    \item $c_z$ : coupon reçu à l'année $z$
-    \item $x_z$ : plafond du coupon fixe reçu à l'année $z$
+\chapter{Modélisation de la mise en jeu d'une garantie}
+Dans ce modèle individuel de pilotage des fonds de garantie de garantie, la simulation de la mise en jeu est une étape fondamentale. Elle peut être décomposée en deux parties :
+\begin{itemize}
+    \item la modélisation de la dépendance :
+    \begin{itemize}
+        \item entre les entreprises du portefeuille : choix de la structure de dépendance
+        \item temporelle, permettant de prendre en compte des persistances des chocs macroéconomiques.
+    \end{itemize}
+    \item la modélisation de la mise en jeu: on va plutôt s’intéresser à avoir une estimation précise de la mise en jeu.
 \end{itemize}
 
-Il est à noter que la matrice $s$ est celle de la Figure 4. 
+Pour modéliser la dépendance des risques au sein du portefeuille, nous avons retenu de l’évènement défaut, plutôt que la mise en jeu de la garantie. Cela permet de réduire le risque de biais éventuel dû à l’effet gestion.
+La modélisation de la mise en permet de prendre en compte le fait que tous les défauts ne conduisent pas forcément à la mise en jeu.
 
-La matrice (puis plus tard le vecteur) à optimiser est la matrice des $N_{i,j}$. Son état initial est :  
-\begin{itemize}\itemsep2pt
-    \item $N_0$ en $(0,n) $
-    \item 0 partout ailleurs
+\section{Modélisation de la dépendance}
+
+Pour modéliser la dépendance, nous avons retenu un modèle à variables latentes. Dans ce modèle, on suppose que l’entreprise $i$ du fonds de garantie $j$ fait défaut si la variable $Z_{i,j,t}$ finie par la suite, passe en dessous d’un certain seuil $d_{i,j,t}$ déterministe) :
+\[
+\boxedb{Z_{i,j,t} = -\sqrt{\rho_j}X_t + \sqrt{1-\rho_j}\varepsilon_{i,j,t}}
+\]
+
+On fait les hypothèses suivantes :
+\begin{itemize}
+    \item $Y_t \sim \stdnorm$ : facteur de risque systémique commun à toutes les entreprises.
+    \item $\varepsilon_{i,j,t}\sim\stdnorm$ : un facteur de risque idiosyncratique, propre à chaque entreprise.
+    \item $\varepsilon_{i,j,t}$ et $Y_t$ indépendantes.
 \end{itemize}
 
-
-\section{Fonction Objectif}
-
-
-%$$\min_{N_{i,j}} \left | \sum_{i,j} ( N_{i,j} \cdot  D_{i,j} ) - N_0 \cdot D_{0,n} \ \right | $$
-
-\[ \max_{N_{i,j}}  \sum_{i,j} ( N_{i,j} \cdot  s_{i,j} )  \]
-
-
-Cela correspond à minimiser l'écart entre la couverture du portefeuille de swaps forwards et celle du swap initial.  Cette fonction objectif incite donc, toute autre contrainte par ailleurs, à  traiter peu de swaps et avec la maturité la plus longue possible.
-
-\subsection{Contraintes}
-
-\begin{enumerate}
-%   \item $ \forall z \in [|1,n|],\quad \ c_z = \sum\limits_{j \geq z , i < z} s_{i,j} N_{i,j} $  \qquad \qquad (valeur du coupon)
-    \item $ \forall i,j  \qquad \qquad \qquad  N_{i,j} \geq 0 $ \qquad \qquad \qquad  \qquad (swaps receveurs uniquement)
-    \item $ \forall j   \qquad \qquad \qquad i \geq j  \Rightarrow \  N_{i,j} = 0 $ \quad \qquad  \qquad (swaps plausibles uniquement)
-    \item $ \forall z \in [|1,n|], \quad N_0 = \sum\limits_{i < z} N_{Col_i} - \sum\limits_{j < z} N_{Row_j}  $ \quad (nominal constant)
-    \item $ \forall z \in [|1,n|], \quad c_z \leq x_z  $  \qquad  \qquad  \qquad  \qquad  \qquad (pilotage de la MNI)
-\end{enumerate}
-
-
+Pour prendre en compte la persistance des chocs macroéconomiques (ou l’autocorrélation des taux de défaut historiques), nous avons postulé le modèle suivant pour le facteur de risque systémique :
+\[
+\boxedb{Y_t = \sum_{k=1}^q \beta_k Y_{t-k} + \sigma\eta_t}
+\]
+\paragraph{Hypothèses}
+\begin{itemize}
+    \item $\mathbb{E}[Y_t] = 0$, $Var(Y_t) = 1, \forall t\geq 0$
+    \item $\eta_t\sim \mathcal{N}(0,1)$
+    \item $\forall k\geq 1$ les variables aléatoires $Y_{t-k}$ et $\eta_t$ sont indépendantes.
+\end{itemize}
 
 \end{document}

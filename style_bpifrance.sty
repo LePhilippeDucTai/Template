@@ -12,6 +12,7 @@
 \usepackage[font={color=Orange}]{caption}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{bbm}
 \usepackage{pifont}
 %------------------Main Font-------------------------
@@ -48,12 +49,12 @@
 
 % Chapter title format
 \titleclass{\part}{top}
-\titleformat{\part}[display]{\normalfont\huge\bfseries\color{Gray}}{}{-2cm}{}
+\titleformat{\part}[display]{\normalfont\LARGE\bfseries\color{Gray}}{}{-2cm}{}
 % Chapter title top margin
 \titlespacing{\part}{0pt}{0cm}{0.5cm}
 
 \titleclass{\chapter}{straight}
-\titleformat{\chapter}{\titlelabel{\thetitle.\quad}\color{DarkYellow}\normalfont\bfseries\huge}{\thechapter.}{.3em}{}
+\titleformat{\chapter}{\titlelabel{\thetitle.\quad}\color{DarkYellow}\normalfont\bfseries\LARGE}{\thechapter.}{.3em}{}
 \titlespacing{\chapter}{0pt}{0cm}{0.5cm}
 
 
@@ -79,6 +80,12 @@
 \renewcommand{\Frlabelitemii}{\color{YellowBpifrance}\small\ding{108}}
 \renewcommand{\Frlabelitemiii}{\color{Gray}\small\ding{108}}
 
+% \renewcommand{\FrenchLabelItem}{\color{Orange}\leafleft}
+% \renewcommand{\Frlabelitemii}{\color{Orange} $\bullet$}
+% \renewcommand{\Frlabelitemiii}{\color{Orange} $\circ$}
+
+
+% Utiliser la librarie tcolorbox, ne fonctionne pas bien avec l'environnement equation
 \newcommand{\boxedb}[1]{\setlength{\fboxrule}{0pt}\fcolorbox{Black}{PaleWhite}{\parbox{0.98\textwidth}{\centering\color{LightPink}\ensuremath{\displaystyle#1}}}}
 
 
@@ -91,6 +98,9 @@
 
 \newcommand{\indic}[1]{%
 \ensuremath{\mathbbm{1}_{\{#1\}}}
+}
+\newcommand{\stdnorm}{
+    \ensuremath{\mathcal{N}(0,1)}
 }
 
 %-------------------------Header & Footer------------------------
