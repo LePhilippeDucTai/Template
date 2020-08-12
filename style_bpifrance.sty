@@ -13,6 +13,7 @@
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 \usepackage{amsfonts}
 \usepackage{bbm}
+\usepackage{pifont}
 %------------------Main Font-------------------------
 \setmainfont{Liberation Sans Narrow}
 % \setmainfont{Arial}
@@ -74,9 +75,9 @@
 
 %-------------------Others-------------------
 
-\renewcommand{\FrenchLabelItem}{\color{Orange}\leafleft}
-\renewcommand{\Frlabelitemii}{\color{Orange} $\bullet$}
-\renewcommand{\Frlabelitemiii}{\color{Orange} $\circ$}
+\renewcommand{\FrenchLabelItem}{\color{DarkGray}\small\ding{108}}
+\renewcommand{\Frlabelitemii}{\color{YellowBpifrance}\small\ding{108}}
+\renewcommand{\Frlabelitemiii}{\color{Gray}\small\ding{108}}
 
 \newcommand{\boxedb}[1]{\setlength{\fboxrule}{0pt}\fcolorbox{Black}{PaleWhite}{\parbox{0.98\textwidth}{\centering\color{LightPink}\ensuremath{\displaystyle#1}}}}
 
